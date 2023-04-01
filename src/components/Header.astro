@@ -1,0 +1,93 @@
+---
+---
+
+<header>
+  <nav>
+    <ul class="navigation-ul bg-sc-nightpurp/40">
+      <li>
+        <a href="/">Feeds</a>
+      </li>
+      <li>
+        <a href="/topics">Topics</a>
+      </li>
+      <li class="goto-homepage">
+        <span>|</span>
+        <a>Homepage</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const navlinkEl =
+    document.querySelectorAll<HTMLAnchorElement>("header li > a");
+  navlinkEl.forEach((linkEl) => {
+    console.log(linkEl.href);
+    if (linkEl.href === location.href) {
+      linkEl.style.color = "var(--sc-tosca)";
+      linkEl.style.fontWeight = "bold";
+    }
+  });
+</script>
+
+<style>
+  header {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 20;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+  }
+
+  nav {
+    width: 100vmin;
+    padding: 0 1rem;
+  }
+
+  .navigation-ul {
+    margin-top: 0.5rem;
+    padding: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    color: var(--sc-purple);
+    background: var(--sc-nightpurp);
+    backdrop-filter: hue-rotate(36deg) brightness(0.5) blur(0.8px);
+  }
+  .navigation-ul:has(a[data-current="true"]) {
+    outline: thin solid;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .goto-homepage {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--sc-reddish);
+  }
+  .goto-homepage > span {
+    padding-bottom: 2px;
+  }
+
+  a {
+    padding: 0 0.25rem;
+    background: #201f2d;
+    border-radius: 6px;
+  }
+  a:hover {
+    background: var(--sc-set);
+  }
+
+  @media (min-width: 600px) {
+    nav {
+      width: 600px;
+    }
+  }
+</style>

@@ -1,0 +1,12 @@
+---
+import Data from "../../public/snapshot/snapshot.json";
+import Layout from "../layouts/Layout.astro";
+import Feed from "../components/Feed.astro";
+import { getTopics } from "../libs/helper";
+
+const topics = getTopics(Data);
+---
+
+<Layout title="Topics / Feed / Paraparata">
+  {topics.map((feed) => <Feed {...feed} />)}
+</Layout>

@@ -1,0 +1,19 @@
+---
+import Data from "../../public/snapshot/snapshot.json";
+import Layout from "../layouts/Layout.astro";
+import Feed from "../components/Feed.astro";
+import { getTopic, getTopicIds, getTopicTitle } from "../libs/helper";
+import type { FeedType } from "../libs/helper";
+
+export function getStaticPaths() {
+  return getTopicIds(Data);
+}
+
+const { id } = Astro.params;
+const topicData = id ? getTopic(Data, id) : [];
+const topicTitle = getTopicTitle(topicData);
+---
+
+<Layout title={`[${topicTitle ?? "Feed"}] / Feed / Paraparata`}>
+  {topicData.map((feed) => <Feed {...feed} />)}
+</Layout>

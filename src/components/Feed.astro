@@ -1,0 +1,40 @@
+---
+import Tag from "./Tag.astro";
+
+import { FeedType, formatDate } from "../libs/helper";
+
+export type Props = FeedType;
+
+const { id, title, parent, content, created_at, tags } = Astro.props;
+const formattedCreatedAt = formatDate(created_at);
+---
+
+<article id={id} class="feed">
+  <section class="feed-data">
+    {parent && <span class="parent">on: {parent.title}</span>}
+    {
+      title && (
+        <h3>
+          <b>[{title}]</b>
+        </h3>
+      )
+    }
+    <p>{content}</p>
+  </section>
+
+  <section class="feed-meta">
+    <div class="tag-list">
+      {
+        tags && (
+          <>
+            <Tag href="#" label="ui" />
+            <Tag href="#" label="cli" />
+          </>
+        )
+      }
+    </div>
+    <time datetime={created_at}>
+      {formattedCreatedAt}
+    </time>
+  </section>
+</article>

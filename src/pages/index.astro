@@ -1,0 +1,12 @@
+---
+import Data from "../../public/snapshot/snapshot.json";
+import Layout from "../layouts/Layout.astro";
+import TimelineReact from "../components/React/TimelineReact";
+import { getTimeline } from "../libs/helper";
+
+const feeds = getTimeline(Data);
+---
+
+<Layout title="Feeds page.">
+  <TimelineReact client:only="react" feeds={feeds} />
+</Layout>
