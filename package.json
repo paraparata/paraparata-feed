@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build",
+    "build": "astro build --silent",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "publish": "./publisher.sh"
   },
   "dependencies": {
     "@astrojs/react": "^2.1.1",
