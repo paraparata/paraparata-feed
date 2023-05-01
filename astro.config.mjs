@@ -4,8 +4,9 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
+  base: "feeds",
   build: {
-    assets: "_assets"
+    assets: "_assets",
   },
-  integrations: [react()]
+  integrations: [react()],
 });

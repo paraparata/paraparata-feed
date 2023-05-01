@@ -12,7 +12,7 @@ const TimelineReact: React.FC<FeedReactProps> = ({ feeds }) => {
         const slug = feed.parent ? `${feed.parent.id}#${feed.id}` : feed.id;
 
         return (
-          <a key={feed.id} href={`/${slug}`} role="prefetch">
+          <a key={feed.id} href={`/feeds/${slug}`} role="prefetch">
             <FeedReact data={feed} />
           </a>
         );
