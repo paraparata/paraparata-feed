@@ -3,13 +3,13 @@ import Tag from "./Tag.astro";
 
 import { FeedType, formatDate } from "../libs/helper";
 
-export type Props = FeedType;
+export type Props = FeedType & { order?: "top" | "middle" | "last" };
 
-const { id, title, parent, content, created_at, tags } = Astro.props;
+const { id, title, parent, content, created_at, tags, order } = Astro.props;
 const formattedCreatedAt = formatDate(created_at);
 ---
 
-<article id={id} class="feed">
+<article id={id} class="feed" data-order={order}>
   <section class="feed-data">
     {parent && <span class="parent">on: {parent.title}</span>}
     {

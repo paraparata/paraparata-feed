@@ -3,7 +3,6 @@ import Data from "../../public/snapshot/snapshot.json";
 import Layout from "../layouts/Layout.astro";
 import Feed from "../components/Feed.astro";
 import { getTopic, getTopicIds, getTopicTitle } from "../libs/helper";
-import type { FeedType } from "../libs/helper";
 
 export function getStaticPaths() {
   return getTopicIds(Data);
@@ -15,5 +14,27 @@ const topicTitle = getTopicTitle(topicData);
 ---
 
 <Layout title={`[${topicTitle ?? "Feed"}] / Feed / Paraparata`}>
-  {topicData.map((feed) => <Feed {...feed} />)}
+  <div class="container">
+    {
+      topicData.map((feed, index) => (
+        <Feed
+          order={
+            index === 0
+              ? "top"
+              : index === topicData.length - 1
+              ? "last"
+              : "middle"
+          }
+          {...feed}
+        />
+      ))
+    }
+  </div>
 </Layout>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
