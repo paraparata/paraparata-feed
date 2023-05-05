@@ -31,6 +31,12 @@ export const getTopic = (feeds: FeedType[], id: string) => {
   const topic = feeds.filter(
     (item) => item.id === id || (item.parent && item.parent.id === id)
   );
+  topic.sort((a, b) => {
+    const aDate = Date.parse(a.created_at);
+    const bDate = Date.parse(b.created_at);
+
+    return aDate - bDate;
+  });
 
   return topic;
 };
