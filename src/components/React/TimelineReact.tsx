@@ -6,6 +6,16 @@ export interface FeedReactProps {
 }
 
 const TimelineReact: React.FC<FeedReactProps> = ({ feeds }) => {
+  if (feeds.length === 0)
+    return (
+      <p style={{ marginTop: "3rem", color: "coral", textAlign: "center" }}>
+        x_x
+        <br />
+        <br />
+        No data..
+      </p>
+    );
+
   return (
     <>
       {feeds.map((feed) => {
