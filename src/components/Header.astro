@@ -3,7 +3,7 @@
 
 <header>
   <nav>
-    <ul class="navigation-ul bg-sc-nightpurp/40">
+    <ul class="navigation-ul">
       <li>
         <a href="/feeds/">Feeds</a>
       </li>
@@ -22,9 +22,7 @@
   const navlinkEl =
     document.querySelectorAll<HTMLAnchorElement>("header li > a");
   navlinkEl.forEach((linkEl) => {
-    console.log(linkEl.href);
     if (linkEl.href === location.href) {
-      linkEl.style.color = "var(--sc-tosca)";
       linkEl.style.fontWeight = "bold";
     }
   });
@@ -51,9 +49,9 @@
     padding: 1.5rem;
     display: flex;
     gap: 0.75rem;
-    color: var(--sc-purple);
-    background: var(--sc-nightpurp);
-    backdrop-filter: hue-rotate(36deg) brightness(0.5) blur(0.8px);
+    color: var(--r-fg);
+    border: thin solid var(--r-border);
+    backdrop-filter: blur(0.8px);
   }
   .navigation-ul:has(a[data-current="true"]) {
     outline: thin solid;
@@ -70,7 +68,7 @@
     justify-content: flex-end;
     align-items: center;
     gap: 0.25rem;
-    color: var(--sc-reddish);
+    color: var(--r-primary);
   }
   .goto-homepage > a {
     padding-bottom: 2px;
@@ -78,16 +76,24 @@
 
   a {
     padding: 0 0.25rem;
-    background: #201f2d;
-    border-radius: 6px;
-  }
-  a:hover {
-    background: var(--sc-set);
+    background: var(--r-accent);
   }
 
   @media (min-width: 600px) {
     nav {
       width: 600px;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .navigation-ul {
+      backdrop-filter: hue-rotate(36deg) brightness(0.5) blur(0.8px);
+    }
+    .goto-homepage {
+      color: var(--r-secondary);
+    }
+    a {
+      background: #201f2d;
     }
   }
 </style>
