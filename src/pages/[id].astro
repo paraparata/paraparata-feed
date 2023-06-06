@@ -8,8 +8,8 @@ export function getStaticPaths() {
   return getTopicIds(Data);
 }
 
-const { id } = Astro.params;
-const topicData = id ? getTopic(Data, id) : [];
+const params = Astro.params;
+const topicData = params?.id ? getTopic(Data, params.id) : [];
 const topicTitle = getTopicTitle(topicData);
 ---
 
