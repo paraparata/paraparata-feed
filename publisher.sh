@@ -22,4 +22,6 @@ echo "(.v.) Fooblishing.."
 
 # publish
 (cd $WEBSITE_PROJECT_PATH && git add feeds/ && git commit -m 'new feed' && git push)
+# (cd $WEBSITE_PROJECT_PATH && git add feeds/ && git commit -m 'feeds view change' && git push)
+
 
