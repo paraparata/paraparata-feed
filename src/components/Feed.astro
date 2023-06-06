@@ -3,7 +3,7 @@ import Tag from "./Tag.astro";
 
 import { FeedType, formatDate } from "../libs/helper";
 
-export type Props = FeedType & { order?: "top" | "middle" | "last" };
+export type Props = FeedType & { order?: "top" | "middle" | "last" | 'none' };
 
 const { id, title, parent, content, created_at, tags, order } = Astro.props;
 const formattedCreatedAt = formatDate(created_at);

@@ -5,6 +5,9 @@
   <nav>
     <ul class="navigation-ul">
       <li>
+        <button id="theme-toggler">🔆</button>
+      </li>
+      <li>
         <a href="/feeds/">Feeds</a>
       </li>
       <li>
@@ -19,6 +22,38 @@
 </header>
 
 <script>
+  const KEY = "theme";
+  const theme = localStorage.getItem(KEY);
+  const preferDark = window.matchMedia("(prefers-color-scheme: dark)");
+  const themeToggler =
+    document.querySelector<HTMLButtonElement>("#theme-toggler");
+
+  const changeThemeIcon = (dark: boolean) => (dark ? "🌙" : "🔆");
+
+  if (themeToggler) {
+    if ((!theme?.match && preferDark.matches) || theme === "dark") {
+      localStorage.setItem(KEY, "dark");
+      themeToggler.innerText = changeThemeIcon(true);
+      document.body.setAttribute("data-theme", "dark");
+    } else {
+      localStorage.setItem(KEY, "light");
+      themeToggler.innerText = changeThemeIcon(false);
+      document.body.setAttribute("data-theme", "light");
+    }
+
+    themeToggler?.addEventListener("click", () => {
+      if (localStorage.getItem(KEY) === "dark") {
+        localStorage.setItem(KEY, "light");
+        themeToggler.innerText = changeThemeIcon(false);
+        document.body.setAttribute("data-theme", "light");
+      } else {
+        localStorage.setItem(KEY, "dark");
+        themeToggler.innerText = changeThemeIcon(true);
+        document.body.setAttribute("data-theme", "dark");
+      }
+    });
+  }
+
   const navlinkEl =
     document.querySelectorAll<HTMLAnchorElement>("header li > a");
   navlinkEl.forEach((linkEl) => {
@@ -48,10 +83,11 @@
     margin-top: 0.5rem;
     padding: 1.5rem;
     display: flex;
+    align-items: center;
     gap: 0.75rem;
     color: var(--r-fg);
     border: thin solid var(--r-border);
-    backdrop-filter: blur(0.8px);
+    backdrop-filter: blur(1.8px);
   }
   .navigation-ul:has(a[data-current="true"]) {
     outline: thin solid;
@@ -74,6 +110,13 @@
     padding-bottom: 2px;
   }
 
+  #theme-toggler {
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+  }
+
   a {
     padding: 0 0.25rem;
     background: var(--r-accent);
@@ -85,15 +128,13 @@
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .navigation-ul {
-      backdrop-filter: hue-rotate(36deg) brightness(0.5) blur(0.8px);
-    }
-    .goto-homepage {
-      color: var(--r-secondary);
-    }
-    a {
-      background: #201f2d;
-    }
+  body[data-theme="dark"] .navigation-ul {
+    backdrop-filter: hue-rotate(36deg) brightness(0.5) blur(1.8px);
+  }
+  body[data-theme="dark"] .goto-homepage {
+    color: var(--r-secondary);
+  }
+  body[data-theme="dark"] a {
+    background: #201f2d;
   }
 </style>

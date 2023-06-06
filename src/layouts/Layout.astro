@@ -17,7 +17,7 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body data-theme="light">
     <Header />
     <main>
       <slot />
@@ -38,7 +38,9 @@ const { title } = Astro.props;
     --r-white: #fff;
     --r-antiquewhite: #faebd7;
     --r-ocean: #bdc7f0;
+  }
 
+  [data-theme="light"] {
     --r-bg: var(--r-azure);
     --r-fg: var(--r-black);
     --r-border: var(--r-black);
@@ -47,15 +49,13 @@ const { title } = Astro.props;
     --r-accent: var(--r-antiquewhite);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --r-bg: var(--r-black);
-      --r-fg: var(--r-azure);
-      --r-border: var(--r-azure);
-      --r-primary: var(--r-orange);
-      --r-secondary: var(--r-antiquewhite);
-      --r-accent: var(--r-antiquewhite);
-    }
+  [data-theme="dark"] {
+    --r-bg: var(--r-black);
+    --r-fg: var(--r-azure);
+    --r-border: var(--r-azure);
+    --r-primary: var(--r-orange);
+    --r-secondary: var(--r-antiquewhite);
+    --r-accent: var(--r-antiquewhite);
   }
 
   * {

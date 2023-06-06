@@ -19,11 +19,13 @@ const topicTitle = getTopicTitle(topicData);
       topicData.map((feed, index) => (
         <Feed
           order={
-            index === 0
-              ? "top"
-              : index === topicData.length - 1
-              ? "last"
-              : "middle"
+            topicData.length > 1
+              ? index === 0
+                ? "top"
+                : index === topicData.length - 1
+                ? "last"
+                : "middle"
+              : "none"
           }
           {...feed}
         />
